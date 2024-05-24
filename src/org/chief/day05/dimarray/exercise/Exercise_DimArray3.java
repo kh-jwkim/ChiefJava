@@ -14,57 +14,40 @@ public class Exercise_DimArray3 {
 		
 		int [][] array = new int[arrSize][arrSize];
 		
-		for(int i=0; i<array.length; i++) {
-			for(int j=0; j<array[i].length; j++) {
-				//array[i][j] = (char)(rand.nextInt(26)+97);
-				//찾아야 하는 규칙 -> 	숫자가 순차적으로 커지는 라인 인지			:사각형 기준 위 -> i가 length/2 보다 작음
-				//						숫자가 순차적으로 작아지는 라인 인지		:사각형 기준 아래 -> i가 length/2 보다 큼
-				//						순차적으로 숫자가 커지는 열의 조건			:사각형 기준 왼쪽 -> j가 length/2 보다 작음
-				//						순차적이지 숫자가 작아지는 열의 조건		:사각형 기준 오륵쪽 -> j가 length/2 보다 큼
-				//						
+		int [] dirX = {-1, 0, 1, 0};
+		int [] dirY = {0, 1, 0, -1};
+		int count=1, X=arrSize-1, Y=0;
+		int dir=0, length = arrSize;
+		
+		for(int i=0; i>arrSize*arrSize; i++) {
+			for(int j=0; j>length; j++) {
 				
-				if(i<array.length/2) {	//짝수행
-					if(i<=j)		//순차적으로 숫자가 증감하는 영역
-						array[i][j] = array.length*(i+1) - j;
-					else {
-						if(j%2==0) {
-							array[i][j] = array.length*4*(j-1) + j;
-						}
-						else {
-							array[i][j] = array.length*4*(j-1) - j;
-						}
-					}
-				}
-				
-				else {			//홀수행
-					if(i<=j)		//순차적으로 숫자가 증감하는 영역
-						array[i][j] = array.length + j;
-					else {
-						if(j%2==0) {
-							array[i][j] = array.length*4*(j-1) + j;
-						}
-						else {
-							array[i][j] = array.length*4*(j-1) - j;
-						}
-					}
-				}
-				
-				
-//				if(i==0) 									//첫번째 행일때 오른쪽에서 왼쪽으로 커짐
-//					array[i][j] = array.length - j; 
-//				else if(i==array.length-1) 					//마지막 행일때 왼쪽에서 오른쪽으로 커짐
-//					array[i][j] = array.length*2 - 1 + j;
-//				else {										//첫번째 또는 마지막 열이 아닌 경우 
-//					if(j==0) {								//첫번째 행
-//						array[i][j] = array.length + i;
-//					}else if(j==array.length-1) {			//마지막 행
-//						array[i][j] = array.length*4 - 3 - i;
-//					}else {									//사이의 행
-//						array[i][j] = array.length + i;
-//					}
-//				}
 			}
 		}
+
+		
+//		for(int i=arrSize-1; i>0; i--) {					//입력은 좌-하-우-상 순으로 i-1칸씩 진행할 것
+//			System.out.println("i="+i);	
+//			for(int dir=0; dir<4; dir++) {					//좌-하-우-상 순으로 입력 순서 결정
+//				System.out.println("dir="+dir);
+//				for(int j=0; j<i; j++) {					//
+//					
+//					System.out.printf("j=%d,X=%d,Y=%d,c=%d\n",j,X,Y,count+1);
+//					
+////					if(array[Y+dirY[dir]][X+dirX[dir]]!=0)
+////						break;
+//					if((dir%2==1) && j==i-1) {
+//						break;
+//					}
+//					X += dirX[dir];
+//					Y += dirY[dir];
+//					array[Y][X] = ++count;
+//										
+//				}
+//			}
+//		}
+		
+
 		
 		for(int i=0; i<array.length; i++) {
 			for(int j=0; j<array[i].length; j++) {
