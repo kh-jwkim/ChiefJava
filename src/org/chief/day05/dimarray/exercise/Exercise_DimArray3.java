@@ -1,6 +1,5 @@
 package org.chief.day05.dimarray.exercise;
 
-import java.util.Random;
 import java.util.Scanner;
 
 public class Exercise_DimArray3 {
@@ -16,37 +15,32 @@ public class Exercise_DimArray3 {
 		
 		int [] dirX = {-1, 0, 1, 0};
 		int [] dirY = {0, 1, 0, -1};
-		int count=1, X=arrSize-1, Y=0;
-		int dir=0, length = arrSize;
+		int count=0, X=arrSize-1, Y=0;
+		int dir=0, distance = arrSize;
 		
-		for(int i=0; i>arrSize*arrSize; i++) {
-			for(int j=0; j>length; j++) {
+		for(int i=0; i<arrSize*arrSize; i++) {		//행렬의 전체 크기 갯수만큼 숫자 입력할것
+			//if(distance<0) break;	//행렬이 전부 작성 완료되었을 때
+//			System.out.printf("t_j=%d,dir=%d,X=%d,Y=%d,c=%d\n",distance,dir,X,Y,count);
+			for (int j=0;j<distance-1;j++) {
+//				System.out.printf("j=%d,dir=%d,X=%d,Y=%d,c=%d\n",distance,dir,X,Y,count);
+				array[Y][X] = ++count;
+				X += dirX[dir];
+				Y += dirY[dir];
+			} 	//같은 방향으로 일정 칸을 움직이기 위한 for문
+			
+			if(array[Y][X]!=0) break;	//행렬의 빈 칸이 더이상 없을 경우 == 작성이 완료
+			array[Y][X] = ++count;
+			
+			dir++;					//방향전환
+			if(dir%2==1) {
+				distance--;
+			}else if(dir==4) 
+				dir=0;
+			X += dirX[dir];
+			Y += dirY[dir];
 				
-			}
 		}
 
-		
-//		for(int i=arrSize-1; i>0; i--) {					//입력은 좌-하-우-상 순으로 i-1칸씩 진행할 것
-//			System.out.println("i="+i);	
-//			for(int dir=0; dir<4; dir++) {					//좌-하-우-상 순으로 입력 순서 결정
-//				System.out.println("dir="+dir);
-//				for(int j=0; j<i; j++) {					//
-//					
-//					System.out.printf("j=%d,X=%d,Y=%d,c=%d\n",j,X,Y,count+1);
-//					
-////					if(array[Y+dirY[dir]][X+dirX[dir]]!=0)
-////						break;
-//					if((dir%2==1) && j==i-1) {
-//						break;
-//					}
-//					X += dirX[dir];
-//					Y += dirY[dir];
-//					array[Y][X] = ++count;
-//										
-//				}
-//			}
-//		}
-		
 
 		
 		for(int i=0; i<array.length; i++) {
@@ -55,7 +49,7 @@ public class Exercise_DimArray3 {
 			}System.out.println();
 		}
 		
-
+		sc.close();
 	}
 
 }
