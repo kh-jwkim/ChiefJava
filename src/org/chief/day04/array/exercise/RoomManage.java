@@ -10,10 +10,6 @@ public class RoomManage {
 		Scanner sc = new Scanner(System.in);
 		boolean[] room = new boolean[10];
 		
-//		for(boolean i: room)
-//			System.out.println(i);
-		
-		
 		while(true) {
 			System.out.println("모텔 관리 프로그램 v1.0");
 			System.out.printf("%-8s%-8s%-8s%-8s","1.입실","2.퇴실","3.방보기","4.종료");
