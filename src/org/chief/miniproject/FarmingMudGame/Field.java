@@ -8,6 +8,8 @@ class Furrow{
 	public Furrow(){
 		if(Math.random()<0.2)
 			this.crop='@';
+		else
+			this.crop='#';
 		this.days=0;
 		this.water=false;
 	}
@@ -97,7 +99,7 @@ public class Field {
 
 	private Furrow[][] field = new Furrow[5][5];
 	
-	public void Field() {
+	public Field() {
 		this.initial();
 	}
 	
@@ -124,11 +126,18 @@ public class Field {
 			System.out.print(i+" ");
 		System.out.println();
 		for(int i=0;i<this.field.length;i++) {
-			System.out.println((i+1)+" ");
+			System.out.print(i+" ");
 			for(Furrow furrow: field[i])
-				System.out.println(furrow.getCrop());
+				System.out.print(furrow.getCrop()+" ");
 			System.out.println();
 		}
+		System.out.println("\n@=돌멩이\r\n"
+				+ ".=씨앗\r\n"
+				+ ",=물 준 씨앗\r\n"
+				+ "P=감자\r\n"
+				+ "C=옥수수\r\n"
+				+ "R=무\r\n"
+				+ "T=토마토");
 	}
 }
 

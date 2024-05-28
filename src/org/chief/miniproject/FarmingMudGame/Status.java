@@ -30,16 +30,20 @@ public class Status {
 		System.out.println("┌──────────┬──────────┬──────────┐");
 		System.out.println("│ 종    류 │ 씨    앗 │ 작    물 │");
 		System.out.println("├──────────┼──────────┼──────────┤");
-		System.out.printf("│%-6s│%7d개 │%7d개 │\n","감자모종",potato,POTATO);
+		System.out.printf("│%-6s│1.%5d개 │5.%5d개 │\n","감자모종",this.potato,this.POTATO);
 		System.out.println("├──────────┼──────────┼──────────┤");
-		System.out.printf("│%-6s│%7d개 │%7d개 │\n","옥수수씨",corn,CORN);
+		System.out.printf("│%-6s│2.%5d개 │6.%5d개 │\n","옥수수씨",this.corn,this.CORN);
 		System.out.println("├──────────┼──────────┼──────────┤");
-		System.out.printf("│%-8s│%7d개 │%7d개 │\n","무씨",radish,RADISH);
+		System.out.printf("│%-8s│3.%5d개 │7.%5d개 │\n","무씨",this.radish,this.RADISH);
 		System.out.println("├──────────┼──────────┼──────────┤");
-		System.out.printf("│%-6s│%7d개 │%7d개 │\n","토마토씨",tomato,TOMATO);
+		System.out.printf("│%-6s│4.%5d개 │8.%5d개 │\n","토마토씨",this.tomato,this.TOMATO);
 		System.out.println("└──────────┴──────────┴──────────┘");
 	}
 	
+	public void statCheck() {
+		System.out.printf("체력 : %3d/100\n",this.health);
+		System.out.printf("돈 : %d\n",this.money);
+	}
 	
 	
 	
