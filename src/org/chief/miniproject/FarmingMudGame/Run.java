@@ -17,11 +17,11 @@ public class Run {
 		while(true) {
 			System.out.println("┌──────────────────────────────────────┐");
 			System.out.println("│            메           뉴           │");
-			System.out.println("├────────────┬────────────┬────────────┤");
-			System.out.printf("│ %6s │ %6s │ %6s │\n","1.작물확인","2.상    점","3.밭 갈 기");
-			System.out.printf("│ %6s │ %6s │ %6s │\n","4.작물심기","5.물뿌리기","6.수확하기");
-			System.out.printf("│ %6s │ %6s │ %6s │\n","7.자러가기","8.상태확인","9.종료하기");
-			System.out.println("└────────────┴────────────┴────────────┘");
+			System.out.println("├──────────────────────────────────────┤");
+			System.out.printf("│ %6s   %6s   %6s │\n","1.작물확인","2.상    점","3.밭 갈 기");
+			System.out.printf("│ %6s   %6s   %6s │\n","4.작물심기","5.물뿌리기","6.수확하기");
+			System.out.printf("│ %6s   %6s   %6s │\n","7.자러가기","8.상태확인","9.종료하기");
+			System.out.println("└──────────────────────────────────────┘");
 			System.out.print("메뉴 입력 : ");
 			int choiceMenu = sc.nextInt();
 			int x, y;
@@ -58,15 +58,29 @@ public class Run {
 				x = sc.nextInt();
 				System.out.print("y좌표 : ");
 				y = sc.nextInt();
-				field.plowing(x, y);
+				field.plowing(stat, x, y);
 				break;
 			case 4:
 				System.out.println("<<작물심기>>");
-				
+				field.checkField();
+				System.out.print("x좌표 : ");
+				x = sc.nextInt();
+				System.out.print("y좌표 : ");
+				y = sc.nextInt();
+				stat.inventoryCheck();
+				System.out.print("심을 작물 선택 : ");
+				int seed = sc.nextInt();
+				field.sowing(stat, seed, x, y);
+
 				break;
 			case 5:
 				System.out.println("<<물뿌리기>>");
-				
+				field.checkField();
+				System.out.print("x좌표 : ");
+				x = sc.nextInt();
+				System.out.print("y좌표 : ");
+				y = sc.nextInt();
+				field.pourWater(x, y);
 				break;
 			case 6:
 				System.out.println("<<수확하기>>");
@@ -75,11 +89,22 @@ public class Run {
 				x = sc.nextInt();
 				System.out.print("y좌표 : ");
 				y = sc.nextInt();
-				field.harvest(x, y);
+				stat.storeCrop(field.harvest(x, y));
 				break;
 			case 7:
 				System.out.println("<<자러가기>>");
-				
+				System.out.println("주무시겠습니까?[y/n]");
+				char select=sc.next().charAt(0);
+				switch (select) {
+				case 'y':
+					stat.gotoSleep();
+					field.growCrop();
+					field.changeWeather();
+					break;
+
+				default:
+					break;
+				}
 				break;
 			case 8:
 				System.out.println("<<상태확인>>");

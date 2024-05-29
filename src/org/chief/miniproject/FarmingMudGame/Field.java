@@ -1,12 +1,12 @@
 package org.chief.miniproject.FarmingMudGame;
 
 class Furrow{
-	char crop;
-	int days;
-	boolean water;
+	private char crop;
+	private int days;
+	private boolean water;
 	
 	public Furrow(){
-		if(Math.random()<0.2)
+		if(Math.random()<0.3)
 			this.crop='@';
 		else
 			this.crop='#';
@@ -42,6 +42,21 @@ class Furrow{
 	public char getCrop() {
 		return this.crop;
 	}
+	public void setCrop(char crop) {
+		this.crop = crop;
+	}
+	public int getDays() {
+		return this.days;
+	}
+	public void setDays(int days) {
+		this.days = days;
+	}
+	public boolean getWater() {
+		return this.water;
+	}
+	public void setWater(boolean water) {
+		this.water = water;
+	}
 	
 	String checkType(char crop) {
 		switch (crop) {
@@ -73,7 +88,7 @@ class Furrow{
 class Crop extends Furrow{
 	public char harvesting() {
 		String cropType;
-		switch (this.crop) {
+		switch (this.getCrop()) {
 		case 'P':
 			cropType="감자";
 			break;
@@ -91,13 +106,14 @@ class Crop extends Furrow{
 			break;
 		}
 		System.out.println(cropType+"을(를) 수확했습니다.");
-		return this.crop;
+		return this.getCrop();
 	}
 }
 
 public class Field {
 
 	private Furrow[][] field = new Furrow[5][5];
+	private char cropList[] = {'p','c','r','t','P','C','R','T'};
 	
 	public Field() {
 		this.initial();
@@ -111,26 +127,63 @@ public class Field {
 		}
 	}
 	
-	void plowing(int x, int y) {
-		this.field[y][x].plowing();
+	void plowing(Status stat, int x, int y) {
+		if(stat.getHealth()>=10) {
+			this.field[y][x].plowing();
+			stat.setHealth(stat.getHealth()-10);
+		}else {
+			System.out.println("체력이 부족해서 밭을 갈 수 없었습니다.\n체력 : "+stat.getHealth()+"/100");
+		}
 	}
+	
+	void sowing(Status stat, int seed, int x, int y) {
+		if(this.getFurrow(x, y)=='#') {
+
+			if(stat.getHealth()<10) {
+				System.out.println("체력이 부족해서 심을 수 없습니다.");
+			}
+			else if(stat.getCrops(seed-1)>0) {
+				stat.setCrops(seed-1, -1);
+				this.field[y][x].setCrop(this.cropList[seed-1]);
+				System.out.println("작물을 성공적으로 심었습니다.");
+			}else {
+				System.out.println("해당 작물이 부족합니다.");
+			}
+		}else
+			System.out.println("비어있는 위치(#)에만 심을 수 있습니다.");
+		
+	}
+	
 	void pourWater(int x, int y) {
 		this.field[y][x].pourWater();
 	}
 	char harvest(int x, int y) {
-		return this.field[y][x].harvesting();
+		char res = this.field[y][x].harvesting();
+		this.field[y][x] = new Furrow();
+		return res;
 	}
 	void checkField() {
 		System.out.print("  ");
 		for(int i=0;i<this.field[0].length;i++)
 			System.out.print(i+" ");
-		System.out.println();
+		System.out.println("x축");
 		for(int i=0;i<this.field.length;i++) {
 			System.out.print(i+" ");
-			for(Furrow furrow: field[i])
-				System.out.print(furrow.getCrop()+" ");
+			for(Furrow furrow: field[i]) {
+				if(furrow.getCrop()!='#' && furrow.getCrop()!='@') {
+					if(96<furrow.getCrop()) {
+						if(furrow.getWater()) 
+							System.out.print(", ");
+						else
+							System.out.print(". ");
+					}else
+						System.out.print(furrow.getCrop()+" ");
+				}else
+					System.out.print(furrow.getCrop()+" ");
+			}
 			System.out.println();
 		}
+		System.out.println("y축");
 		System.out.println("\n@=돌멩이\r\n"
 				+ ".=씨앗\r\n"
 				+ ",=물 준 씨앗\r\n"
@@ -138,6 +191,39 @@ public class Field {
 				+ "C=옥수수\r\n"
 				+ "R=무\r\n"
 				+ "T=토마토");
+	}
+	
+	char getFurrow(int x, int y) {
+		return field[y][x].getCrop();
+	}
+	
+	void growCrop() {
+		for(int i=0;i<this.field.length;i++) {
+			for(Furrow furrow: field[i]) {
+				if(furrow.getCrop()!='@' && furrow.getCrop()!='#' && 96<furrow.getCrop() && furrow.getWater()==true) {
+					furrow.setDays(furrow.getDays()+1);
+					if(furrow.getDays()>2) {
+						furrow.setCrop((char)((int)furrow.getCrop()-32));
+						furrow.setDays(0);
+					}
+				}
+				furrow.setWater(false);
+			}
+		}
+	}
+	
+	void changeWeather() {
+		int weather = (int)(Math.random()*10);
+		if(weather>3) {
+			System.out.println("오늘의 날씨는 맑습니다.");
+		}else if(weather>=0) {
+			System.out.println("오늘은 비가 내립니다.");
+			for(int i=0;i<this.field.length;i++) {
+				for(Furrow furrow: field[i]) {
+					furrow.setWater(true);
+				}
+			}
+		}
 	}
 }
 

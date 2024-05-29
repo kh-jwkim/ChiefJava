@@ -3,9 +3,9 @@ package org.chief.miniproject.FarmingMudGame;
 import java.util.Scanner;
 
 public class Store {
-	Product[] buy = new Product[4];
-	Product[] sell = new Product[8];
-	Scanner sc = new Scanner(System.in);
+	private Product[] buy = new Product[4];
+	private Product[] sell = new Product[8];
+	private Scanner sc = new Scanner(System.in);
 	
 	public Store() {
 //		Product[] buyList = new Product[4];
