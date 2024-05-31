@@ -9,6 +9,7 @@ public class Exam_Interface {
 		phone.printLogo();
 		phone.sendCall();
 		phone.showLogo();
-		((SamsungPhone) phone).musicPlay();	//phone 객체는 PhoneInterface 타입으로 선언되었으므로 musicPlay()를 쓰기 위해서는 SamsungPhone으로 다운캐스팅 해 줘야 한다.
+		((SamsungPhone) phone).musicPlay();	//phone 객체는 PhoneInterface 타입으로 선언되었으므로
+											//musicPlay()를 쓰기 위해서는 SamsungPhone으로 다운캐스팅 해 줘야 한다.
 	}
 }
