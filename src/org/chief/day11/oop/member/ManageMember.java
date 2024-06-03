@@ -46,21 +46,16 @@ public class ManageMember {
 		
 		int i=0;
 		for(;i<members.length;i++) {
-			if(members[i] != null) {
-				if(members[i].getMemberEmail().equals(email)) {
+			if(members[i] != null) 
+				if(members[i].getMemberEmail().equals(email)) 
 					break;
-				}
-			}
 		}
 		if(i!=0) {
-			for(;i<members.length;i++) {
-				if(i+1 <= members.length){
-					members[i] = members[i+1];
-				}
+			for(;i<members.length-1;i++) {
+				members[i] = members[i+1];
 			}
 		}
-		this.members = new Member[5];
-		index = 0;
+		index--;
 	}
 	
 	public void updateMember(Member member) {
