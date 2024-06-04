@@ -19,16 +19,15 @@ public class ManageStudent implements ManageInterface{
 	}
 
 	@Override
-	public List<Student> searchOneByName(String name) {
+	public List<Student> searchOneByName(String name) {	//리턴용 List를 따로 만들어서 던져주자
 		// TODO Auto-generated method stub
+		List<Student> resList = new ArrayList<Student>();
 		for(Student student: sList) {
 			if(student.getName().equals(name)) {
-				System.out.println("이름 : "+student.getName());
-				System.out.println("1번째 점수 : "+student.getFirstScore());
-				System.out.println("2번째 점수 : "+student.getSecondScore());
+				resList.add(student);
 			}
 		}
-		return null;
+		return resList;
 	}
 //	public Student searchOneByName1(String name) {
 //		// TODO Auto-generated method stub

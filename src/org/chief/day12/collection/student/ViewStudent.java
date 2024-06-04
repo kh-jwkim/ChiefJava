@@ -30,6 +30,16 @@ public class ViewStudent {
 		}
 	}
 	
+	public void displayStudent(List<Student> stdList) {
+		System.out.println("====== 검색된 정보 출력 ======");
+		for(Student std : stdList) {
+			System.out.printf("\t이름 : %s\n", std.getName());
+			System.out.printf("\t1차 점수 : %d\n", std.getFirstScore());
+			System.out.printf("\t2차 점수 : %d\n", std.getSecondScore());
+			System.out.println("=================================");
+		}
+	}
+	
 	public Student inputStudent() {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("이름 : ");

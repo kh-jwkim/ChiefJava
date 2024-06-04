@@ -17,7 +17,10 @@ public class StudentRun {
 				break;
 			case 2:
 				String searchName = view.selectStudent();
-				mng.searchOneByName(searchName);	//여기서 List<Student>로 값 받는게 맞나...?
+				view.displayStudent(mng.searchOneByName(searchName));
+				//searchOneByName에서 List<Student>를 새로 만들고 출력할 데이터를 담아서 리턴
+				//displayStudent는 입력받은 ArrayList값을 출력
+				
 				break;
 			case 3:
 				List<Student> stdList = mng.selectAllStudents();
