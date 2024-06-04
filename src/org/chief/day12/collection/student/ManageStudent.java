@@ -1,7 +1,9 @@
 package org.chief.day12.collection.student;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ManageStudent implements ManageInterface{
 
@@ -29,19 +31,43 @@ public class ManageStudent implements ManageInterface{
 		}
 		return resList;
 	}
-//	public Student searchOneByName1(String name) {
-//		// TODO Auto-generated method stub
-//		if(sList.contains(name))
-//		for(Student student: sList.) {
-//		}
-//		return null;
-//	}
 	
 	public int searchIndexByName(String name) {
 		for(int i=0; i<sList.size(); i++) 
 			if(sList.get(i).getName().equals(name)) 
 				return i;
 		return -1;
+	}
+	
+	public boolean checkScore(String name) {
+		for(Student student: sList) {
+			if(student.getName().equals(name)) {
+				return ((student.getFirstScore()+student.getSecondScore())/2 >= 60);
+					
+			}
+		}
+		return false;
+	}
+	
+	public Map<String, Object> searchModifyStudent(String name) {	//리턴용 List를 따로 만들어서 던져주자
+		// TODO Auto-generated method stub
+		if(name != null) {
+			Map<String, Object> result = new HashMap<String, Object>();
+			for(int i=0; i<sList.size(); i++) {
+				Student student = sList.get(i);
+				if(name.equals(student.getName())) {
+					result.put("student", student);
+					result.put("index", i);
+					return result;
+				}
+			}
+//		for(Student student: sList) {
+//			if(student.getName().equals(name)) {
+//				return student;
+//			}
+//		}
+		}
+		return null;
 	}
 
 	@Override
@@ -53,8 +79,7 @@ public class ManageStudent implements ManageInterface{
 	@Override
 	public void modifyStudent(int index, Student student) {
 		// TODO Auto-generated method stub
-		sList.remove(index);
-		sList.add(index, student);
+		sList.set(index, student);
 	}
 
 	@Override

@@ -51,16 +51,32 @@ public class ViewStudent {
 		Student std = new Student(name, firstScore, secondScore);
 		return std;
 	}
+	
+	public Student modifyStudent(Student student) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("1번째 점수 : ");
+		student.setFirstScore(sc.nextInt());
+		System.out.print("2번째 점수 : ");
+		student.setSecondScore(sc.nextInt());
+		return student;
+	}
 
 	public void displayMsg(String msg) {
 		System.out.println(msg);
 	}
 	
-	public String selectStudent() {
+	public String inputName() {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("이름 : ");
 		String name = sc.next();
 		return name;
+	}
+	
+	public void displayResult(boolean res) {
+		if(res)
+			System.out.println("시험에 통과하였습니다");
+		else
+			System.out.println("재시험 대상입니다");
 	}
 	
 }
