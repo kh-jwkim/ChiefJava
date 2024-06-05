@@ -25,9 +25,8 @@ public class ManageStudent implements ManageInterface{
 		// TODO Auto-generated method stub
 		List<Student> resList = new ArrayList<Student>();
 		for(Student student: sList) {
-			if(student.getName().equals(name)) {
+			if(student.getName().equals(name)) 
 				resList.add(student);
-			}
 		}
 		return resList;
 	}
@@ -42,8 +41,10 @@ public class ManageStudent implements ManageInterface{
 	public boolean checkScore(String name) {
 		for(Student student: sList) {
 			if(student.getName().equals(name)) {
-				return ((student.getFirstScore()+student.getSecondScore())/2 >= 60);
-					
+				if(student.getFirstScore()<40 || student.getSecondScore()<40)
+					return false;
+				else
+					return ((student.getFirstScore()+student.getSecondScore())/2.0 >= 60);
 			}
 		}
 		return false;
@@ -61,11 +62,6 @@ public class ManageStudent implements ManageInterface{
 					return result;
 				}
 			}
-//		for(Student student: sList) {
-//			if(student.getName().equals(name)) {
-//				return student;
-//			}
-//		}
 		}
 		return null;
 	}
