@@ -16,7 +16,7 @@ public class ViewMusic {
 	//todo : 메인메뉴 텍스트 출력
 	public int printMenu() {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("=== === 메인 메뉴 === ===");		//오늘(06/04)은 일단 1~6번까지
+		System.out.println("\n=== === 메인 메뉴 === ===");		//오늘(06/04)은 일단 1~6번까지
 		System.out.println("1. 마지막 위치에 곡 추가");
 		System.out.println("2. 첫 위치에 곡 추가");
 		System.out.println("3. 전체 곡 목록 출력");

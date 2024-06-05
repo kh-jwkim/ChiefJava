@@ -1,6 +1,6 @@
 package org.chief.day13.collection.music.model;
 
-public class Music {
+public class Music implements Comparable<Music> {
 	
 	private String title;
 	private String singer;
@@ -17,5 +17,11 @@ public class Music {
 	}
 	public void setSinger(String singer) {
 		this.singer = singer;
+	}
+	
+	@Override
+	public int compareTo(Music o) {
+		// TODO Auto-generated method stub
+		return this.title.compareTo(o.getTitle());
 	}
 }

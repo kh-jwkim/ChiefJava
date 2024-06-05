@@ -45,12 +45,16 @@ public class MusicApp {
 				mng.modifyOne(modifyIndex, modifyMusic);
 				break;
 			case 7:
+				mng.sortyByTitleASC();
 				break;
 			case 8:
+				mng.sortyByTitleDESC();
 				break;
 			case 9:
+				mng.sortyBySingerASC();
 				break;
 			case 10:
+				mng.sortyBySingerDESC();
 				break;
 			case 0:
 				view.printMessage("프로그램을 종료합니다.");
